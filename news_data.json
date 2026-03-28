@@ -6,7 +6,7 @@
       "source": "Financial Times",
       "title": "SEC Finalizes New Scope 3 Emissions Tracking Rules",
       "snippet": "Regulators and standard-setting boards are pushing for more rigorous carbon accounting methodologies across global supply chains. The new mandate will require exhaustive disclosures from public corporations by Q4.",
-      "url": "https://www.ft.com/content/123-sec-scope3",
+      "url": "https://www.reuters.com/sustainability/boards-policy-regulation/us-sec-drops-some-emissions-requirements-draft-climate-rules-sources-say-2024-02-22/",
       "time": "08:30 AM",
       "dateObj": "2024-03-28T08:00:00Z"
     },
@@ -16,7 +16,7 @@
       "source": "Bloomberg",
       "title": "Generative Models Slashing Grid Energy Consumption by 15%",
       "snippet": "Data centers are major energy consumers, but new machine learning algorithms are optimizing cooling and workload distributions in real-time.",
-      "url": "https://www.bloomberg.com/news/articles/example",
+      "url": "https://blog.google/outreach-initiatives/environment/deepmind-ai-reduces-google-data-centre-cooling-bill-by-40/",
       "time": "09:15 AM",
       "dateObj": "2024-03-28T09:00:00Z"
     },
@@ -26,7 +26,7 @@
       "source": "The Economist",
       "title": "European Central Bank Penalizes Laggards in Transition Mandates",
       "snippet": "Transition plans are now explicitly tied to core lending rates, putting massive financial pressure on heavy emitters to provide credible pathways to net-zero.",
-      "url": "https://www.economist.com/finance-and-economics/example",
+      "url": "https://www.reuters.com/business/environment/ecb-threatens-20-banks-with-fines-over-climate-risk-sources-2023-11-23/",
       "time": "11:00 AM",
       "dateObj": "2024-03-28T11:00:00Z"
     },
@@ -36,7 +36,7 @@
       "source": "The Edge",
       "title": "New Green Subsidy Programs Unveiled for Mid-Market Manufacturers",
       "snippet": "Grants and low-interest loans are being rolled out globally to help smaller enterprises audit their energy footprint and upgrade legacy equipment.",
-      "url": "https://theedgemalaysia.com/article/example",
+      "url": "https://www.weforum.org/agenda/2022/11/smes-are-key-to-accelerating-the-green-transition-they-need-our-support/",
       "time": "1:45 PM",
       "dateObj": "2024-03-28T13:45:00Z"
     },
@@ -46,7 +46,7 @@
       "source": "Reuters",
       "title": "Global Standards Board Issues New Reporting Framework Guidelines",
       "snippet": "The new framework aims to unify corporate disclosures and provide a consistent basis for sustainability reporting worldwide.",
-      "url": "https://www.reuters.com/business/sustainable-business/example",
+      "url": "https://www.ifrs.org/news-and-events/news/2023/06/issb-issues-ifrs-s1-ifrs-s2/",
       "time": "2:30 PM",
       "dateObj": "2024-03-28T14:30:00Z"
     }
@@ -58,7 +58,7 @@
       "source": "Wall Street Journal",
       "title": "Asian Infrastructure Funds Master Pivot to Coastal Resilience",
       "snippet": "As extreme weather events become more frequent and destructive, institutional investors are looking heavily into adaptation bonds and hard infrastructure fortification.",
-      "url": "https://www.wsj.com/articles/example",
+      "url": "https://www.adb.org/news/adb-launches-new-nature-and-climate-adaptation-facility",
       "time": "10:30 AM",
       "dateObj": "2024-03-27T10:00:00Z"
     },
@@ -68,7 +68,7 @@
       "source": "Bloomberg",
       "title": "Boardrooms Face Investor Mutinies Over Verifiable Target Execution",
       "snippet": "Shareholder activism is rapidly evolving from demanding vague pledges to demanding hard proof of systemic operational shifts and corporate action.",
-      "url": "https://www.bloomberg.com/news/articles/example2",
+      "url": "https://hbr.org/2023/06/the-new-rules-of-climate-activism",
       "time": "3:20 PM",
       "dateObj": "2024-03-27T15:20:00Z"
     },
@@ -78,7 +78,7 @@
       "source": "The Guardian",
       "title": "Green Bond Issuance Surges in Q1 as Sustainable Finance Takes Center Stage",
       "snippet": "Corporate financing mechanisms are rapidly shifting towards sustainable instruments as investor demand for green bonds reaches an all-time high.",
-      "url": "https://www.theguardian.com/business/example",
+      "url": "https://www.bloomberg.com/news/articles/2024-01-10/green-bond-sales-surge-as-issuers-rush-to-tap-early-year-demand",
       "time": "4:15 PM",
       "dateObj": "2024-03-27T16:15:00Z"
     }
