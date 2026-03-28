@@ -33,7 +33,7 @@ def fetch_articles_for_topic(topic):
     
     # We append "sustainability" to guarantee highly relevant professional results
     query = urllib.parse.quote(f"{topic} sustainability")
-    url = f"https://gnews.io/api/v4/search?q={query}&lang=en&max=2&apikey={API_KEY}"
+    url = f"https://newsdata.io/api/1/news?apikey={API_KEY}&q={query}&language=en"
     
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -41,17 +41,22 @@ def fetch_articles_for_topic(topic):
             data = json.loads(response.read().decode('utf-8'))
             
             articles = []
-            if "articles" in data:
-                for item in data["articles"]:
-                    source_name = item.get("source", {}).get("name", "Global News Portal")
+            if "results" in data:
+                for item in data.get("results", [])[:2]: # Max 2 articles per topic
+                    source_name = item.get("source_id", "Global News Portal")
+                    if isinstance(source_name, dict):
+                        source_name = source_name.get("name", "Global News Portal")
+                    
+                    article_link = item.get("link", "")
+                    desc = item.get("description") or ""
                     
                     articles.append({
-                        "id": str(hash(item.get("url", ""))),
+                        "id": str(hash(article_link)),
                         "topic": topic,
-                        "source": source_name,
+                        "source": str(source_name).title(),
                         "title": item.get("title", ""),
-                        "snippet": item.get("description", "")[:120] + "...",
-                        "url": item.get("url", ""),
+                        "snippet": desc[:120] + "...",
+                        "url": article_link,
                         "time": get_formatted_time(),
                     })
             return articles
