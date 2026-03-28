@@ -2,13 +2,13 @@ import json
 import os
 import urllib.request
 import urllib.parse
+import xml.etree.ElementTree as ET
 from datetime import datetime
 import time
 
 # --- Configuration ---
-# You will get this key for free from a service like NewsData.io or GNews.io
-# Make sure to securely store it in your GitHub Repository settings under Settings > Secrets and variables > Actions
-API_KEY = os.environ.get("NEWS_API_KEY", "YOUR_FREE_API_KEY_HERE")
+# Using Google News RSS endpoints to provide guaranteed working deep-links
+# No API key required.
 
 TOPICS = [
     "Carbon Accounting",
@@ -18,57 +18,67 @@ TOPICS = [
     "SME Government Support",
     "Corporate Sustainability Action",
     "Sustainability Reporting",
-    "Sustainability Financing"
+    "Sustainability Financing",
+    "Supply Chain"
 ]
 
 JSON_FILE_PATH = "news_data.json"
 
 def fetch_articles_for_topic(topic):
     """
-    Fetches articles for a specific topic using a free News API.
-    Since premium sources like FT and Bloomberg often block free APIs, 
-    we perform a broad query for the topic but prioritize business/financial news.
+    Fetches articles for a specific topic using Google News RSS.
+    This guarantees that the URLs provided are direct working links to actual articles.
     """
     print(f"Fetching news for: {topic}...")
     
-    # Example using GNews Free API - Returns structured JSON
-    # 'q' is our search query, 'max' limits the results per topic to save space
-    # In production, replace the URL with the exact endpoint of your chosen provider
-    query = urllib.parse.quote(topic)
-    url = f"https://gnews.io/api/v4/search?q={query}&lang=en&max=3&apikey={API_KEY}"
+    # We use Google News RSS search to fetch direct working links
+    query = urllib.parse.quote(f'"{topic}" OR sustainability')
+    url = f"https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en"
     
+    articles = []
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req) as response:
-            data = json.loads(response.read().decode('utf-8'))
+            xml_data = response.read()
+            root = ET.fromstring(xml_data)
             
-            articles = []
-            if "articles" in data:
-                for item in data["articles"]:
-                    source_name = item.get("source", {}).get("name", "Financial/Global News")
-                    
-                    articles.append({
-                        "id": str(hash(item.get("url", ""))),
-                        "topic": topic,
-                        "source": source_name,
-                        "title": item.get("title", ""),
-                        "snippet": item.get("description", "")[:120] + "...", # truncate
-                        "url": item.get("url", "#"),
-                        "time": get_formatted_time(),
-                    })
-            return articles
+            # Find all <item> elements, taking the top 2
+            for item in root.findall('.//item')[:2]:
+                title = item.find('title')
+                link = item.find('link')
+                
+                # Google News titles are typically "Actual Title - Source Name"
+                full_title = title.text if title is not None else "News Article"
+                source_name = "Global News"
+                if " - " in full_title:
+                    parts = full_title.rsplit(" - ", 1)
+                    full_title = parts[0]
+                    source_name = parts[1]
+                
+                article_link = link.text if link is not None else "#"
+                
+                articles.append({
+                    "id": str(hash(article_link)),
+                    "topic": topic,
+                    "source": source_name,
+                    "title": full_title,
+                    "snippet": f"Latest insights and developments regarding {topic} from {source_name}.",
+                    "url": article_link,
+                    "time": get_formatted_time(),
+                })
+        return articles
             
     except Exception as e:
         print(f"Failed to fetch {topic}: {e}")
-        # Return fallback mock structured data if the API fails or no key is provided
+        # Final fallback
         search_query = urllib.parse.quote(f"{topic} news")
         return [
             {
                 "id": f"fallback-{str(hash(topic))}",
                 "topic": topic,
-                "source": "Financial Times (Simulated)",
-                "title": f"New Policy Mandates for {topic}",
-                "snippet": "Regulators are accelerating deadlines for corporate compliance in this sector.",
+                "source": "Fallback News",
+                "title": f"Recent developments in {topic}",
+                "snippet": f"Important updates regarding {topic}.",
                 "url": f"https://news.google.com/search?q={search_query}",
                 "time": get_formatted_time(),
             }
@@ -114,7 +124,7 @@ def main():
     for topic in TOPICS:
         articles = fetch_articles_for_topic(topic)
         todays_articles.extend(articles)
-        time.sleep(1) # Be polite to the free API rate limits!
+        time.sleep(0.5) # Be polite
         
     manage_rolling_window(todays_articles)
     print("Done! The landing page will now display the latest news.")

@@ -7,7 +7,8 @@ const TOPICS = [
     "SME Govt Support",
     "Enabling Corporate Action",
     "Sustainability Reporting",
-    "Sustainability Financing"
+    "Sustainability Financing",
+    "Supply Chain"
 ];
 
 const SOURCES = [
@@ -37,7 +38,7 @@ let CURRENT_DATE_IDX = 0; // 0 = today, 1 = yesterday, etc. (up to 6)
 // Load Live Data
 async function loadLiveData() {
     try {
-        const response = await fetch('news_data.json');
+        const response = await fetch('news_data.json?t=' + new Date().getTime());
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
