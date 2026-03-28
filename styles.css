@@ -1,0 +1,541 @@
+:root {
+  /* Picasso Inspired Palette */
+  --cubist-blue: #2A4B7C;
+  --terracotta-red: #D9534F;
+  --earthy-yellow: #E8AA42;
+  --deep-green: #3D6B58;
+  --sage-accent: #B0C4B1;
+  
+  /* Notebook Grid Colors */
+  --notebook-bg: #F5F5F5;
+  --grid-line: rgba(0, 0, 0, 0.05);
+  --binding-line: rgba(0, 0, 0, 0.8);
+  
+  /* Utilities */
+  --text-dark: #1F2937;
+  --text-muted: #6B7280;
+  --surface-white: rgba(255, 255, 255, 0.85);
+  
+  --br: 12px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 4px 6px 0px rgba(0,0,0,0.8); /* Brutalist/Cubist shadow */
+  
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--notebook-bg);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Notebook Binding effect on the left edge */
+.notebook-binding {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background-color: var(--terracotta-red);
+  border-right: 2px solid var(--binding-line);
+  z-index: 10;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.notebook-binding::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  bottom: 0;
+  width: 2px;
+  background-image: repeating-linear-gradient(transparent, transparent 20px, #ffffff 20px, #ffffff 40px);
+  opacity: 0.3;
+}
+
+.content-wrapper {
+  margin-left: 40px; /* offset for binding */
+  padding: 2rem 4rem;
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: calc(40px + 4rem); /* centered but accounting for binding */
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--text-dark);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  font-size: 2.5rem;
+  color: var(--deep-green);
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+  color: var(--text-dark);
+  text-transform: uppercase;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.date-selector {
+  display: flex;
+  align-items: center;
+  background: var(--surface-white);
+  border: 2px solid var(--text-dark);
+  border-radius: 30px;
+  padding: 0.25rem 0.5rem;
+  gap: 0.5rem;
+  box-shadow: 3px 3px 0 var(--text-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.date-selector:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--text-dark);
+}
+
+.date-selector button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.date-selector button:hover:not(:disabled) {
+  background: var(--earthy-yellow);
+  color: var(--text-dark);
+}
+
+.date-selector button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.date-selector button i {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+}
+
+.date-display {
+  font-weight: 600;
+  font-family: var(--font-display);
+  min-width: 90px;
+  text-align: center;
+}
+
+.user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cubist-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: 2px solid var(--text-dark);
+}
+
+/* Dashboard Layout */
+.dashboard {
+  padding-top: 3rem;
+}
+
+.hero-section {
+  margin-bottom: 2.5rem;
+}
+
+.picasso-heading {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.highlight-cube {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.highlight-cube::after {
+  content: '';
+  position: absolute;
+  bottom: 0.2em;
+  left: -0.1em;
+  right: -0.1em;
+  height: 0.4em;
+  background-color: var(--earthy-yellow);
+  z-index: -1;
+  transform: rotate(-1deg);
+  border: 1px solid var(--text-dark);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Controls / Filters */
+.controls-section {
+  margin-bottom: 3rem;
+  background: var(--surface-white);
+  border: 2px solid var(--text-dark);
+  padding: 1.5rem;
+  border-radius: var(--br);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+}
+
+.filter-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.topic-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: 2px solid var(--text-dark);
+  background: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+}
+
+.filter-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 0 var(--text-dark);
+}
+
+.filter-pill.active {
+  background: var(--deep-green);
+  color: white;
+  border-color: var(--text-dark);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+/* Specific colors for specific topics to enhance the picasso vibe */
+.filter-pill[data-topic="Carbon Accounting"].active { background: var(--cubist-blue); }
+.filter-pill[data-topic="AI & Sustainability"].active { background: var(--terracotta-red); }
+.filter-pill[data-topic="Climate Adaptation"].active { background: var(--earthy-yellow); color: var(--text-dark); }
+
+/* News Feed Grid */
+.news-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.news-card {
+  background: var(--surface-white);
+  border: 2px solid var(--text-dark);
+  border-radius: var(--br);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(4px);
+}
+
+.news-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: var(--deep-green);
+}
+
+/* Random cubist accent variants for cards */
+.news-card:nth-child(3n+1)::before { background: var(--cubist-blue); }
+.news-card:nth-child(3n+2)::before { background: var(--terracotta-red); }
+.news-card:nth-child(3n+3)::before { background: var(--earthy-yellow); }
+
+.news-card:hover {
+  transform: translateY(-4px) translate-x(-2px);
+  box-shadow: 6px 8px 0 rgba(0,0,0,0.85); /* Cubist/Brutalist pop */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  background: var(--text-dark);
+  color: white;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Custom source styling */
+.source-Financial .source-badge { background: #FCDFC6; color: #333; border: 1px solid #333; }
+.source-TheEconomist .source-badge { background: #E3120B; color: white; }
+.source-Bloomberg .source-badge { background: black; color: white; }
+.source-TheEdge .source-badge { background: #005A9C; color: white; }
+
+.article-time {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-dark);
+}
+
+.card-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-title a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--terracotta-red);
+}
+
+.card-snippet {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--text-muted);
+}
+
+.topic-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--deep-green);
+  background: rgba(61, 107, 88, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.read-more {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.read-more:hover {
+  color: var(--cubist-blue);
+  gap: 0.6rem;
+}
+
+
+/* Modal Styles for Archive Navigation */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--notebook-bg);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 2px solid var(--text-dark);
+  border-radius: var(--br);
+  padding: 2rem;
+  box-shadow: 8px 8px 0 var(--text-dark);
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--text-dark);
+}
+
+.modal-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cal-day-btn {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--text-dark);
+  background: white;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cal-day-btn:hover {
+  background: var(--sage-accent);
+  transform: translateX(4px);
+  box-shadow: -4px 4px 0 var(--text-dark);
+}
+
+.cal-day-btn.active {
+  background: var(--terracotta-red);
+  color: white;
+}
+
+.cal-subtext {
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+    padding-left: calc(40px + 1rem); /* Keep notebook left border visible but smaller spacing */
+  }
+
+  .picasso-heading {
+    font-size: 2.5rem;
+  }
+  
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

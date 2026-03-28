@@ -1,0 +1,66 @@
+[
+  [
+    {
+      "id": "1",
+      "topic": "Carbon Accounting",
+      "source": "Financial Times",
+      "title": "SEC Finalizes New Scope 3 Emissions Tracking Rules",
+      "snippet": "Regulators and standard-setting boards are pushing for more rigorous carbon accounting methodologies across global supply chains. The new mandate will require exhaustive disclosures from public corporations by Q4.",
+      "url": "https://www.ft.com",
+      "time": "08:30 AM",
+      "dateObj": "2024-03-28T08:00:00Z"
+    },
+    {
+      "id": "2",
+      "topic": "AI & Sustainability",
+      "source": "Bloomberg",
+      "title": "Generative Models Slashing Grid Energy Consumption by 15%",
+      "snippet": "Data centers are major energy consumers, but new machine learning algorithms are optimizing cooling and workload distributions in real-time.",
+      "url": "https://www.bloomberg.com",
+      "time": "09:15 AM",
+      "dateObj": "2024-03-28T09:00:00Z"
+    },
+    {
+      "id": "3",
+      "topic": "Climate Transition Plans",
+      "source": "The Economist",
+      "title": "European Central Bank Penalizes Laggards in Transition Mandates",
+      "snippet": "Transition plans are now explicitly tied to core lending rates, putting massive financial pressure on heavy emitters to provide credible pathways to net-zero.",
+      "url": "https://www.economist.com",
+      "time": "11:00 AM",
+      "dateObj": "2024-03-28T11:00:00Z"
+    },
+    {
+      "id": "4",
+      "topic": "SME Govt Support",
+      "source": "The Edge",
+      "title": "New Green Subsidy Programs Unveiled for Mid-Market Manufacturers",
+      "snippet": "Grants and low-interest loans are being rolled out globally to help smaller enterprises audit their energy footprint and upgrade legacy equipment.",
+      "url": "https://theedgemalaysia.com/",
+      "time": "1:45 PM",
+      "dateObj": "2024-03-28T13:45:00Z"
+    }
+  ],
+  [
+    {
+      "id": "5",
+      "topic": "Climate Adaptation",
+      "source": "Financial Times",
+      "title": "Asian Infrastructure Funds Master Pivot to Coastal Resilience",
+      "snippet": "As extreme weather events become more frequent and destructive, institutional investors are looking heavily into adaptation bonds and hard infrastructure fortification.",
+      "url": "https://www.ft.com",
+      "time": "10:30 AM",
+      "dateObj": "2024-03-27T10:00:00Z"
+    },
+    {
+      "id": "6",
+      "topic": "Enabling Corporate Action",
+      "source": "Bloomberg",
+      "title": "Boardrooms Face Investor Mutinies Over Verifiable Target Execution",
+      "snippet": "Shareholder activism is rapidly evolving from demanding vague pledges to demanding hard proof of systemic operational shifts and corporate action.",
+      "url": "https://www.bloomberg.com",
+      "time": "3:20 PM",
+      "dateObj": "2024-03-27T15:20:00Z"
+    }
+  ]
+]
