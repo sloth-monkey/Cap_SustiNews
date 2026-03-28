@@ -5,21 +5,29 @@ const TOPICS = [
     "Climate Adaptation",
     "Climate Transition Plans",
     "SME Govt Support",
-    "Enabling Corporate Action"
+    "Enabling Corporate Action",
+    "Sustainability Reporting",
+    "Sustainability Financing"
 ];
 
 const SOURCES = [
     "Financial Times",
     "The Economist",
     "The Edge",
-    "Bloomberg"
+    "Bloomberg",
+    "Reuters",
+    "Wall Street Journal",
+    "The Guardian"
 ];
 
 const SOURCE_CLASSES = {
     "Financial Times": "source-Financial",
     "The Economist": "source-TheEconomist",
     "The Edge": "source-TheEdge",
-    "Bloomberg": "source-Bloomberg"
+    "Bloomberg": "source-Bloomberg",
+    "Reuters": "source-Reuters",
+    "Wall Street Journal": "source-WSJ",
+    "The Guardian": "source-Guardian"
 };
 
 const NEWS_DB = [];
@@ -124,8 +132,8 @@ function renderFeed() {
 }
 
 function getSourceIcon(source) {
-    if (source.includes("Financial")) return '<i class="ph-fill ph-newspaper"></i>';
-    if (source.includes("Economist")) return '<i class="ph-fill ph-book-open"></i>';
+    if (source.includes("Financial") || source.includes("Street")) return '<i class="ph-fill ph-newspaper"></i>';
+    if (source.includes("Economist") || source.includes("Guardian") || source.includes("Reuters")) return '<i class="ph-fill ph-book-open"></i>';
     if (source.includes("Bloomberg")) return '<i class="ph-fill ph-chart-line-up"></i>';
     return '<i class="ph-fill ph-globe-hemisphere-west"></i>'; // The Edge
 }

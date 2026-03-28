@@ -360,6 +360,9 @@ body {
 .source-TheEconomist .source-badge { background: #E3120B; color: white; }
 .source-Bloomberg .source-badge { background: black; color: white; }
 .source-TheEdge .source-badge { background: #005A9C; color: white; }
+.source-Reuters .source-badge { background: #FF8000; color: white; }
+.source-WSJ .source-badge { background: #000; color: white; border: 1px solid #CCC; }
+.source-Guardian .source-badge { background: #052962; color: white; }
 
 .article-time {
   font-size: 0.85rem;

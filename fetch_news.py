@@ -1,6 +1,7 @@
 import json
 import os
 import urllib.request
+import urllib.parse
 from datetime import datetime
 import time
 
@@ -15,7 +16,9 @@ TOPICS = [
     "Climate Adaptation",
     "Climate Transition Plans",
     "SME Government Support",
-    "Corporate Sustainability Action"
+    "Corporate Sustainability Action",
+    "Sustainability Reporting",
+    "Sustainability Financing"
 ]
 
 JSON_FILE_PATH = "news_data.json"
@@ -58,14 +61,15 @@ def fetch_articles_for_topic(topic):
     except Exception as e:
         print(f"Failed to fetch {topic}: {e}")
         # Return fallback mock structured data if the API fails or no key is provided
+        search_query = urllib.parse.quote(f"{topic} news")
         return [
             {
-                "id": "fallback-1",
+                "id": f"fallback-{str(hash(topic))}",
                 "topic": topic,
                 "source": "Financial Times (Simulated)",
                 "title": f"New Policy Mandates for {topic}",
                 "snippet": "Regulators are accelerating deadlines for corporate compliance in this sector.",
-                "url": "#",
+                "url": f"https://news.google.com/search?q={search_query}",
                 "time": get_formatted_time(),
             }
         ]
